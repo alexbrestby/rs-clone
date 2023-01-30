@@ -3,14 +3,13 @@ const User = require("../models/User.js");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator')
-const secret = process.env.SECRET;
 
 const generateAccessToken = (id, email) => {
   const payload = {
     id,
     email
   }
-  return jwt.sign(payload, secret, { expiresIn: "24h" })
+  return jwt.sign(payload, process.env.SECRET, { expiresIn: "24h" })
 }
 
 class UserController {
